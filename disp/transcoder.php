@@ -24,7 +24,7 @@ $transcoder_fsmarr = array();
 function transcoder_fsm($from,$to) {
  global $transcoder_dir,$transcoder_fsmarr;
  $fromto = $from . "_" . $to;
- if ($transcoder_fsmarr[$fromto]) {
+ if (isset($transcoder_fsmarr[$fromto])) {
   return;
  }
  $filein = $transcoder_dir . "/" . $fromto . ".xml";
@@ -92,7 +92,10 @@ function transcoder_fsm($from,$to) {
  foreach($fsmentries as $i => $fsmentry) {
   $in = $fsmentry['in'];
   $c = $in[0];
-  $state=$states[$c];
+  $state = null;
+  if (isset($states[$c])) {
+   $state=$states[$c];
+  }
   if ($state) {
     $state[]=$i;
     $states[$c]=$state;
@@ -216,10 +219,15 @@ function transcoder_processString($line,$from,$to) {
  global $transcoder_dir,$transcoder_fsmarr;
  if ($from == $to) {return $line;}
  $fromto = $from . "_" . $to;
- $fsm = $transcoder_fsmarr[$fromto];
+ $fsm = null;
+ if (isset($transcoder_fsmarr[$fromto])) {
+  $fsm = $transcoder_fsmarr[$fromto];
+ }
  if (!$fsm) {
   transcoder_fsm($from,$to);
-  $fsm = $transcoder_fsmarr[$fromto];
+  if (isset($transcoder_fsmarr[$fromto])) {
+   $fsm = $transcoder_fsmarr[$fromto];
+  }
   if (!$fsm) {
 //   echo "could not find fsm\n";
    return $line;
@@ -262,7 +270,11 @@ function transcoder_processString_match($line,$n,$m,$fsmentry) {
   if (!$b) { return $match;}
   if ($k != $nedge)  { return $match;}
   $match=$edge;
-  if (!$fsmentry['regex']) {
+  $temp = null;
+  if (isset($fsmentry['regex'])) {
+   $temp = $fsmentry['regex'];
+  } 
+  if (!$temp) {
    return $match;
   }
   //  additional logic when $fsmentry['regex'] is DEVA or TAMIL

@@ -37,11 +37,20 @@ body {
 <?php
 //include('/afs/rrz.uni-koeln.de/vol/www/projekt/sanskrit-lexicon/http/docs/php/transcoder/transcoder.php');
 include('transcoder.php');
- $pageIn = $_GET['page'];
- if ($pageIN) {
+ $page = null;
+ if (isset($_GET['page'])) {
+  $pageIn = $_GET['page'];
+ }else {
+  $pageIn = null;
+ }
+ if ($pageIn) {
   $page = $pageIn;
  }else {
-  $section = $_GET['section']; // section number
+  if (isset($_GET['section'])) {
+   $section = $_GET['section']; // section number
+  } else {
+   $section = null;
+  }
   if ($section) {
    $page = section2page($section);
   }
