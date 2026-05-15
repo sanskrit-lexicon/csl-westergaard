@@ -4,26 +4,43 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**csl-westergaard** is a self-contained PHP application that displays scanned images of Westergaard's *Dhātupātha* (list of Sanskrit verbal roots). It is linked from the Monier-Williams dictionary display for root entries.
+**csl-westergaard** is a Sanskrit Lexicon **scanned-book** repository — part of the Cologne Digital Sanskrit Lexicon (CDSL) infrastructure.
 
-Deployed at: `https://www.sanskrit-lexicon.uni-koeln.de/scans/Westergaard/disp/index.php`
+## Repo Category
 
-When installed locally under XAMPP, access via: `http://localhost/Westergaard/disp/index.php`
+`scanned-book` — see the [tooling runbook](https://github.com/sanskrit-lexicon/csl-observatory/blob/main/runbook/cologne-tooling-runbook.md) for category-specific conventions.
 
-## Architecture
+## GitHub Issue Conventions
 
-| Directory/File | Purpose |
-|---|---|
-| `disp/` | PHP web application: `index.php` serves scanned page images, `index_cologne.css`, etc. |
-| `jpg/` | Scanned page images of the Westergaard Dhātupātha |
-| `wgfiles.txt` | Index of scanned image files |
-| `readme.txt` | Installation and usage notes |
+This repository uses the **Cologne tooling-repo taxonomy**. All issues must have:
+- **Exactly one type label** (9 options)
+- **Exactly one severity label** (4 levels)
+- **One milestone** (5 options)
 
-### URL parameters
+### Type Labels
+- `bug` — Code defect (wrong output, broken contract)
+- `feature` — Net-new capability
+- `enhancement` — Improvement to existing capability
+- `performance` — Speed, memory, throughput optimization
+- `tech-debt` — Refactoring, cleanup, dependency updates
+- `security` — CVE, auth issue, credential exposure
+- `documentation` — Prose docs, API docs, comments
+- `infrastructure` — CI/CD, deploy, data pipelines, build tooling
+- `question` — Research, proposals, open discussions
 
-`index.php` accepts `?section=X` where X = 1–36 to jump to a specific section of the Dhātupātha. This parameter is used by the MW dictionary display to link directly to the relevant root section.
+### Severity Labels
+- `trivial` — Cosmetic, < 1 hour
+- `minor` — Single function/component
+- `major` — Multiple files, design decision
+- `critical` — Blocks users, data loss/security CVE
 
-## Dependencies
+### Milestones
+- **API Stability** — performance, security, regressions
+- **User Experience** — bugs, features, enhancements
+- **Data Quality** — data-pipeline issues, integrity
+- **Developer Experience** — tech-debt, infrastructure, docs
+- **Community** — questions, proposals, discussions
 
-- **PHP** (CLI + Apache/XAMPP)
-- Scanned images in `jpg/`
+## Cross-Repo Coordination
+
+The org-level project [Tooling Roadmap](https://github.com/orgs/sanskrit-lexicon/projects/9) tracks tool work across all repositories.
