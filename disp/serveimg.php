@@ -1,6 +1,12 @@
 <?php
 // serveimg for Westergaard
 // 12-28-2009, ejf
+// 10-01-2026 H5536: explicit response headers — the XHR response lands in an
+// innerHTML sink (disp/main.js updatePage); pin Content-Type and forbid MIME
+// sniffing so any future regression that echoes request input cannot become
+// a reflected XSS through that sink. No effect on legitimate rendering.
+header('Content-Type: text/html; charset=UTF-8');
+header('X-Content-Type-Options: nosniff');
 $pagein=$_GET['page'];
 if (!$pagein) {$pagein = $argv[1];}
 if (!$pagein) {$pagein='7';} // title page
