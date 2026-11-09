@@ -6,6 +6,7 @@
   <head>
     <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
     <title>WDP SCAN</title>
+<?php require_once(__DIR__ . "/og_meta.php"); echo og_meta_page("westergaard"); ?>
     <link rel="stylesheet" href="cologne_main.css">
     <link rel="stylesheet" href="main.css">
   <script type="text/javascript" src="ajax.js"> </script>
